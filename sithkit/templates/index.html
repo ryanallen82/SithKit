@@ -17,12 +17,13 @@
         </div>
         <div class="top-bar-right">
             <span class="status-dot" id="statusDot"></span>
-            <span class="status-text" id="statusText">SCANNING</span>
+            <span class="status-text" id="statusText">OFFLINE</span>
         </div>
     </header>
 
     <main class="content">
         <aside class="panel device-panel">
+
             <h2 class="panel-title">DEVICES</h2>
             <div class="device-card" id="faultierCard">
                 <div class="device-header">
@@ -30,26 +31,48 @@
                     <span class="device-name">Faultier</span>
                     <span class="device-status" id="deviceStatus">OFFLINE</span>
                 </div>
-                <div class="device-info" id="deviceInfo">
+                <div class="device-info">
                     <div class="info-row">
                         <span class="info-label">Control</span>
-                        <span class="info-value" id="controlPort">---</span>
+                        <span class="info-value dim" id="controlPort">---</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Serial</span>
-                        <span class="info-value" id="serialPath">---</span>
+                        <span class="info-value dim" id="serialPath">---</span>
                     </div>
                 </div>
                 <button class="btn-connect" id="connectBtn">[ CONNECT ]</button>
             </div>
+
+            <h2 class="panel-title" style="margin-top: 24px;">POWER ANALYSIS</h2>
+            <div class="device-card" id="powerCard">
+                <div class="device-info">
+                    <div class="info-row">
+                        <span class="info-label">Samples</span>
+                        <input class="param-input" id="sampleCount" type="number"
+                               value="5000" min="100" max="30000">
+                    </div>
+                </div>
+                <button class="btn-capture" id="captureBtn" disabled>[ CAPTURE TRACE ]</button>
+                <button class="btn-export" id="exportBtn" disabled>[ EXPORT CSV ]</button>
+            </div>
+
         </aside>
 
-        <section class="panel terminal-panel">
-            <h2 class="panel-title">TERMINAL</h2>
-            <div class="terminal" id="terminal">
-                <div class="terminal-line system">[SITHKIT] Initializing...</div>
+        <section class="right-panel">
+            <div class="panel terminal-panel">
+                <h2 class="panel-title">TERMINAL</h2>
+                <div class="terminal" id="terminal">
+                    <div class="terminal-line system">[SITHKIT] Initializing...</div>
+                </div>
+                <div class="terminal-cursor">&#x2588;</div>
             </div>
-            <div class="terminal-cursor">&#x2588;</div>
+
+            <div class="panel waveform-panel">
+                <h2 class="panel-title">POWER TRACE</h2>
+                <canvas id="waveform"></canvas>
+                <div class="waveform-empty" id="waveformEmpty">No trace captured</div>
+            </div>
         </section>
     </main>
 
