@@ -10,7 +10,7 @@ Built for practitioners who work with fault injection, side-channel analysis, de
 
 | Device | Capability |
 |--------|------------|
-| Faultier (stacksmashing) | Detection, connection status, power analysis |
+| Faultier | Detection, connection status, power analysis |
 
 ## Installation
 
