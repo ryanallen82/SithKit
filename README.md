@@ -5,7 +5,7 @@ Hardware hacking toolkit. Currently supports detection of the **Faultier** fault
 ## Installation
 
 ```
-pip install pyusb libusb-package
+pip install faultier
 ```
 
 ## Usage
@@ -23,33 +23,24 @@ python -m sithkit
 ```
 SithKit - Hardware Hacking Toolkit
 
-Found 1 Faultier device(s):
+Faultier connected!
 
-  [1] Faultier (current firmware)
-      VID:PID      = 37de:fffd
-      Bus:Address  = 1:5
-      Manufacturer = stacksmashing
-      Product      = Faultier
-      Serial       = DF6050788B362E32
+  Control port = COM5
+  Serial path  = COM6
 ```
 
 ## Supported Devices
 
 | Device | VID:PID | Notes |
 |--------|---------|-------|
-| Faultier (current firmware) | `37de:fffd` | RP2040-based fault injection tool |
-| Faultier (legacy firmware) | `2b3e:2343` | Older firmware versions |
-
-## Windows Driver Note
-
-On Windows, you may need to use [Zadig](https://zadig.akeo.ie/) to assign the **WinUSB** driver to the Faultier's USB interface before it can be detected.
+| Faultier | `2b3e:2343` | RP2040-based fault injection tool by stacksmashing |
 
 ## Programmatic Use
 
 ```python
 from sithkit.detect import find_faultier
 
-devices = find_faultier()
-for dev in devices:
-    print(dev["serial_number"])
+device = find_faultier()
+if device:
+    print(device["serial_path"])
 ```
