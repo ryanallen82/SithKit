@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+:root {
+    --bg: #0a0a0f;
+    --bg-panel: #0d0d14;
+    --green: #00ff41;
+    --cyan: #00d4ff;
+    --magenta: #ff00ff;
+    --dim: #1a1a2e;
+    --text: #c0c0c0;
+    --text-dim: #555566;
+    --red: #ff2244;
+    --border: #1a1a2e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    background-color: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Scanlines overlay */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.04) 3px,
+        rgba(0, 0, 0, 0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* CRT vignette */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 60%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-panel);
+    position: relative;
+    z-index: 1;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--magenta);
+    text-shadow:
+        0 0 10px var(--magenta),
+        0 0 30px rgba(255, 0, 255, 0.4);
+    letter-spacing: 4px;
+}
+
+.version {
+    font-size: 11px;
+    color: var(--text-dim);
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.status-dot.connected {
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green), 0 0 16px rgba(0, 255, 65, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-dot.disconnected {
+    background: var(--red);
+    box-shadow: 0 0 4px var(--red);
+}
+
+.status-text {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Main content */
+.content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* Panels */
+.panel {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.panel-title {
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+/* Device panel */
+.device-panel {
+    width: 300px;
+    border-right: 1px solid var(--border);
+    background: var(--bg-panel);
+    flex-shrink: 0;
+}
+
+.device-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    background: rgba(10, 10, 15, 0.8);
+    transition: all 0.3s;
+}
+
+.device-card.connected {
+    border-color: var(--green);
+    box-shadow:
+        0 0 8px rgba(0, 255, 65, 0.1),
+        inset 0 0 16px rgba(0, 255, 65, 0.03);
+}
+
+.device-card.disconnected {
+    border-color: var(--dim);
+}
+
+.device-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.device-icon {
+    font-size: 18px;
+    color: var(--cyan);
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.4);
+}
+
+.device-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+}
+
+.device-status {
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+.device-status.online {
+    color: var(--green);
+    background: rgba(0, 255, 65, 0.1);
+    text-shadow: 0 0 6px rgba(0, 255, 65, 0.3);
+}
+
+.device-status.offline {
+    color: var(--text-dim);
+    background: rgba(85, 85, 102, 0.1);
+}
+
+/* Device info rows */
+.device-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.info-value {
+    font-size: 12px;
+    color: var(--cyan);
+    text-shadow: 0 0 4px rgba(0, 212, 255, 0.2);
+}
+
+.info-value.dim {
+    color: var(--text-dim);
+    text-shadow: none;
+}
+
+/* Terminal panel */
+.terminal-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+}
+
+.terminal {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 8px;
+}
+
+.terminal-line {
+    font-size: 12px;
+    line-height: 1.8;
+    padding: 0 4px;
+}
+
+.terminal-line.system {
+    color: var(--cyan);
+}
+
+.terminal-line.success {
+    color: var(--green);
+}
+
+.terminal-line.error {
+    color: var(--red);
+}
+
+.terminal-line.info {
+    color: var(--text-dim);
+}
+
+.terminal-line .timestamp {
+    color: var(--text-dim);
+    margin-right: 8px;
+}
+
+.terminal-cursor {
+    color: var(--green);
+    font-size: 12px;
+    animation: blink 1s step-end infinite;
+    padding: 0 4px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Connect button */
+.btn-connect {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 8px 0;
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.05);
+    transition: all 0.2s;
+}
+
+.btn-connect:hover {
+    background: rgba(0, 212, 255, 0.08);
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.15);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+.btn-connect:active {
+    background: rgba(0, 212, 255, 0.15);
+}
+
+.btn-connect:disabled {
+    border-color: var(--text-dim);
+    color: var(--text-dim);
+    text-shadow: none;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dim);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-dim);
+}

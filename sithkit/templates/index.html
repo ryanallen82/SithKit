@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SithKit</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <span class="logo">SITHKIT</span>
+            <span class="version">v0.1.0</span>
+        </div>
+        <div class="top-bar-right">
+            <span class="status-dot" id="statusDot"></span>
+            <span class="status-text" id="statusText">SCANNING</span>
+        </div>
+    </header>
+
+    <main class="content">
+        <aside class="panel device-panel">
+            <h2 class="panel-title">DEVICES</h2>
+            <div class="device-card" id="faultierCard">
+                <div class="device-header">
+                    <span class="device-icon">&#x25C8;</span>
+                    <span class="device-name">Faultier</span>
+                    <span class="device-status" id="deviceStatus">OFFLINE</span>
+                </div>
+                <div class="device-info" id="deviceInfo">
+                    <div class="info-row">
+                        <span class="info-label">Control</span>
+                        <span class="info-value" id="controlPort">---</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Serial</span>
+                        <span class="info-value" id="serialPath">---</span>
+                    </div>
+                </div>
+                <button class="btn-connect" id="connectBtn">[ CONNECT ]</button>
+            </div>
+        </aside>
+
+        <section class="panel terminal-panel">
+            <h2 class="panel-title">TERMINAL</h2>
+            <div class="terminal" id="terminal">
+                <div class="terminal-line system">[SITHKIT] Initializing...</div>
+            </div>
+            <div class="terminal-cursor">&#x2588;</div>
+        </section>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
