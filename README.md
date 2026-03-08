@@ -1,4 +1,4 @@
-![SithKit](img/banner.png)
+![SithKit](banner.png)
 
 # SithKit
 
