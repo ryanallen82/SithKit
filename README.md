@@ -2,9 +2,11 @@
 
 # SithKit
 
-SithKit is a **single pane of glass** frontend for hardware hacking. Rather than juggling a dozen terminal windows, scripts, and vendor tools, SithKit brings your hardware hacking toolkit into one unified, retro-futuristic web UI — device detection, control, and monitoring all in one place.
+SithKit is a **single pane of glass** for hardware hacking. Rather than juggling a dozen terminal windows, scripts, and vendor tools, SithKit brings your hardware hacking toolkit into one place — device detection, control, and monitoring all in one place.
 
 Built for practitioners who work with fault injection, side-channel analysis, debug probes, and other embedded hardware tooling. Plug in your devices, hit connect, and get to work.
+
+![Screenshot](img/screenshot.png)
 
 ## Current Support
 
@@ -28,14 +30,7 @@ python run.py
 
 Opens the SithKit dashboard in your browser at `http://127.0.0.1:8000`.
 
-### Example Output
-
-```
-SithKit - Hardware Hacking Toolkit
-Starting server at http://127.0.0.1:8000
-```
-
-Hit **[ CONNECT ]** in the UI to scan for devices. The dashboard shows live device status, port info, and a terminal log of all activity.
+Hit **[ CONNECT ]** to scan for devices. The dashboard shows live device status, port info, and a terminal log of all activity.
 
 ## Programmatic Use
 
