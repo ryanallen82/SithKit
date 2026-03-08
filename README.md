@@ -6,8 +6,6 @@ SithKit is a **single pane of glass** for hardware hacking. Rather than juggling
 
 Built for practitioners who work with fault injection, side-channel analysis, debug probes, and other embedded hardware tooling. Plug in your devices, hit connect, and get to work.
 
-![Screenshot](img/screenshot.png)
-
 ## Current Support
 
 | Device | Capability |
