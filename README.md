@@ -12,6 +12,8 @@ Built for practitioners who work with fault injection, side-channel analysis, de
 |--------|------------|
 | Faultier | Detection, connection status, power analysis |
 
+MORE TO COME! SithKit is in early development, and we're actively adding support for more devices and features. If you have a device you'd like to see supported, let us know!
+
 ## Installation
 
 ```bash
